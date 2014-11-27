@@ -6,6 +6,11 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name='arch' type='xml'>
+            
+            <field name="date_order" position="after">
+                <field name="date_entrega" required="1"/>
+            </field>
+
         	<field name="payment_term" position="replace">
         		<!-- <field name="payment_term" widget="selection" invisible="0"/> -->
         	</field>
@@ -17,5 +22,27 @@
             </field>           
         </field>            
     </record>
+
+    <record id="cd_view_order_tree" model="ir.ui.view">
+            <field name="name">cd.sale.order.tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>      
+            <field name="arch" type="xml">
+                <field name="date_order" position="after">
+                    <field name="date_entrega"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="cd_view_quotation_tree" model="ir.ui.view">
+            <field name="name">cd.sale.order.tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree"/>
+            <field name="arch" type="xml">                
+                <field name="date_order" position="after">
+                    <field name="date_entrega"/>
+                </field>                    
+            </field>
+        </record>
     </data>
 </openerp>

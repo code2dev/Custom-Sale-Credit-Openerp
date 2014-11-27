@@ -17,7 +17,8 @@ class sale_order_custom(osv.osv) :
     _columns = {
 #     	"property_payment_term" : fields.char('Condiciones de Pago'),    	
     	"credit_limit" : fields.float('Limite de Credito', store=True),    	
-    	"credit" : fields.float('Credito', store=True),    	
+    	"credit" : fields.float('Credito', store=True),  
+        "date_entrega" : fields.date("Fecha Entrega")  	
     }
     
     def create(self, cr, uid, vals, context=None):    
