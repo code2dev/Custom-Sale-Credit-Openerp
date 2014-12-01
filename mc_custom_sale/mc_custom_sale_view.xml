@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>    
+
+        <record id="res_partner_custom" model="ir.ui.view">
+            <field name="name">res.partner.view.address_type</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="arch" type="xml">
+                <field name="email" position="after">
+                    <field name="descuento_desc" groups="account.group_account_manager"/>
+                </field>
+            </field>
+        </record>
+		
+		<record id="mc_view_order_tree" model="ir.ui.view">
+            <field name="name">mc.sale.order.tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>      
+            <field name="arch" type="xml">
+                <field name="date_order" position="after">
+                    <field name="date_entrega"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="mc_view_quotation_tree" model="ir.ui.view">
+            <field name="name">mc.sale.order.tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree"/>
+            <field name="arch" type="xml">                
+                <field name="date_order" position="after">
+                    <field name="date_entrega"/>
+                </field>                    
+            </field>
+        </record>
+
+        <record id="mc_custom_sale_form" model="ir.ui.view">
+            <field name="name">mc.custom.sale.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name='arch' type='xml'>
+            	<field name="payment_term" position="replace">
+            		<!-- <field name="payment_term" widget="selection" invisible="0"/> -->
+            	</field>
+                <field name="partner_id" position="after">
+                    <!-- <field name="property_payment_term" readonly="1" required="1"/> -->  
+                    <field name="payment_term" widget="selection" readonly="1"/>              
+                    <field name="credit_limit" readonly="1"/>
+                    <field name="credit" readonly="1"/>
+                    <field name="descuento_desc" readonly="1"/>
+                </field> 
+				<field name="date_order" position="after">
+                    <field name="date_entrega" required="1"/>
+                </field>
+            </field>            
+        </record>
+    </data>
+</openerp>
